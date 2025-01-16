@@ -36,7 +36,6 @@ export default class Experience
         this.time = new Time()
         this.sizes = new Sizes()
         this.setConfig()
-        this.setDebug()
         this.setScene()
         this.setCamera()
         this.setRenderer()
@@ -79,19 +78,6 @@ export default class Experience
         this.config.height = boundings.height || window.innerHeight
         this.config.smallestSide = Math.min(this.config.width, this.config.height)
         this.config.largestSide = Math.max(this.config.width, this.config.height)
-
-        // Debug
-        // this.config.debug = window.location.hash === '#debug'
-        this.config.debug = this.config.width > 420
-    }
-
-    setDebug()
-    {
-        if(this.config.debug)
-        {
-            this.debug = new Pane()
-            this.debug.containerElem_.style.width = '320px'
-        }
     }
 
     setScene()

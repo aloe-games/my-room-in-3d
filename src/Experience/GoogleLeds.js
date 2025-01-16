@@ -8,18 +8,8 @@ export default class GoogleLeds
     {
         this.experience = new Experience()
         this.resources = this.experience.resources
-        this.debug = this.experience.debug
         this.scene = this.experience.scene
         this.time = this.experience.time
-
-        // Debug
-        if(this.debug)
-        {
-            this.debugFolder = this.debug.addFolder({
-                title: 'googleLeds',
-                expanded: false
-            })
-        }
 
         this.setModel()
     }
@@ -47,7 +37,7 @@ export default class GoogleLeds
 
             return 0
         })
-        
+
         let i = 0
         for(const _child of children)
         {
@@ -68,21 +58,6 @@ export default class GoogleLeds
             this.scene.add(item.mesh)
 
             this.model.items.push(item)
-
-            // Debug
-            if(this.debug)
-            {
-                this.debugFolder
-                    .addInput(
-                        item,
-                        'color',
-                        { view: 'color' }
-                    )
-                    .on('change', () =>
-                    {
-                        item.material.color.set(item.color)
-                    })
-            }
 
             i++
         }

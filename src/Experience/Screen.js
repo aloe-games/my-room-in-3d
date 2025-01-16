@@ -8,7 +8,6 @@ export default class Screen
     {
         this.experience = new Experience()
         this.resources = this.experience.resources
-        this.debug = this.experience.debug
         this.scene = this.experience.scene
         this.world = this.experience.world
 

@@ -9,18 +9,8 @@ export default class LoupedeckButtons
     {
         this.experience = new Experience()
         this.resources = this.experience.resources
-        this.debug = this.experience.debug
         this.scene = this.experience.scene
         this.time = this.experience.time
-
-        // Debug
-        if(this.debug)
-        {
-            this.debugFolder = this.debug.addFolder({
-                title: 'loupedeckButtons',
-                expanded: false
-            })
-        }
 
         this.setModel()
         this.setAnimation()
@@ -44,7 +34,7 @@ export default class LoupedeckButtons
 
             return 0
         })
-        
+
         let i = 0
         for(const _child of children)
         {
@@ -63,21 +53,6 @@ export default class LoupedeckButtons
 
             this.model.items.push(item)
 
-            // // Debug
-            // if(this.debug)
-            // {
-            //     this.debugFolder
-            //         .addInput(
-            //             item,
-            //             'color',
-            //             { view: 'color' }
-            //         )
-            //         .on('change', () =>
-            //         {
-            //             item.material.color.set(item.color)
-            //         })
-            // }
-
             i++
         }
     }
@@ -87,24 +62,6 @@ export default class LoupedeckButtons
         this.animation = {}
 
         this.animation.colors = ['#af55cf', '#dbd85d', '#e86b24', '#b81b54']
-
-        for(const _colorIndex in this.animation.colors)
-        {
-            // Debug
-            if(this.debug)
-            {
-                this.debugFolder
-                    .addInput(
-                        this.animation.colors,
-                        _colorIndex,
-                        { view: 'color' }
-                    )
-                    // .on('change', () =>
-                    // {
-                    //     item.material.color.set(item.color)
-                    // })
-            }
-        }
 
         this.animation.play = () =>
         {

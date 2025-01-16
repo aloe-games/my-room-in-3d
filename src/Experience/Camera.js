@@ -9,14 +9,13 @@ export default class Camera
         // Options
         this.experience = new Experience()
         this.config = this.experience.config
-        this.debug = this.experience.debug
         this.time = this.experience.time
         this.sizes = this.experience.sizes
         this.targetElement = this.experience.targetElement
         this.scene = this.experience.scene
 
         // Set up
-        this.mode = 'default' // default \ debug
+        this.mode = 'default'
 
         this.setInstance()
         this.setModes()
@@ -39,20 +38,6 @@ export default class Camera
         this.modes.default = {}
         this.modes.default.instance = this.instance.clone()
         this.modes.default.instance.rotation.reorder('YXZ')
-
-        // Debug
-        this.modes.debug = {}
-        this.modes.debug.instance = this.instance.clone()
-        this.modes.debug.instance.rotation.reorder('YXZ')
-        this.modes.debug.instance.position.set(- 15, 15, 15)
-        
-        this.modes.debug.orbitControls = new OrbitControls(this.modes.debug.instance, this.targetElement)
-        this.modes.debug.orbitControls.enabled = false
-        this.modes.debug.orbitControls.screenSpacePanning = true
-        this.modes.debug.orbitControls.enableKeys = false
-        this.modes.debug.orbitControls.zoomSpeed = 0.25
-        this.modes.debug.orbitControls.enableDamping = true
-        this.modes.debug.orbitControls.update()
     }
 
 
@@ -63,16 +48,10 @@ export default class Camera
 
         this.modes.default.instance.aspect = this.config.width / this.config.height
         this.modes.default.instance.updateProjectionMatrix()
-
-        this.modes.debug.instance.aspect = this.config.width / this.config.height
-        this.modes.debug.instance.updateProjectionMatrix()
     }
 
     update()
     {
-        // Update debug orbit controls
-        this.modes.debug.orbitControls.update()
-
         // Apply coordinates
         this.instance.position.copy(this.modes[this.mode].instance.position)
         this.instance.quaternion.copy(this.modes[this.mode].instance.quaternion)
@@ -81,6 +60,6 @@ export default class Camera
 
     destroy()
     {
-        this.modes.debug.orbitControls.destroy()
+
     }
 }

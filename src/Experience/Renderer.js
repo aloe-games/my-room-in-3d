@@ -9,13 +9,11 @@ export default class Renderer
     {
         this.experience = new Experience()
         this.config = this.experience.config
-        this.debug = this.experience.debug
-        this.stats = this.experience.stats
         this.time = this.experience.time
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
         this.camera = this.experience.camera
-        
+
         this.usePostprocess = false
 
         this.setInstance()
