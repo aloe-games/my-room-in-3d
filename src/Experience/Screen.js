@@ -4,7 +4,7 @@ import Experience from './Experience.js'
 
 export default class Screen
 {
-    constructor(_mesh, _sourcePath)
+    constructor(_mesh)
     {
         this.experience = new Experience()
         this.resources = this.experience.resources
@@ -13,7 +13,6 @@ export default class Screen
         this.world = this.experience.world
 
         this.mesh = _mesh
-        this.sourcePath = _sourcePath
 
         this.setModel()
     }
@@ -22,23 +21,9 @@ export default class Screen
     {
         this.model = {}
 
-        // Element
-        this.model.element = document.createElement('video')
-        this.model.element.muted = true
-        this.model.element.loop = true
-        this.model.element.controls = true
-        this.model.element.playsInline = true
-        this.model.element.autoplay = true
-        this.model.element.src = this.sourcePath
-        this.model.element.play()
-
-        // Texture
-        this.model.texture = new THREE.VideoTexture(this.model.element)
-        this.model.texture.encoding = THREE.sRGBEncoding
-
         // Material
         this.model.material = new THREE.MeshBasicMaterial({
-            map: this.model.texture
+            color: 'black'
         })
 
         // Mesh

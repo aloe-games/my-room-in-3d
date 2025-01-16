@@ -17,7 +17,7 @@ export default class World
         this.config = this.experience.config
         this.scene = this.experience.scene
         this.resources = this.experience.resources
-        
+
         this.resources.on('groupEnd', (_group) =>
         {
             if(_group.name === 'base')
@@ -72,12 +72,10 @@ export default class World
     setScreens()
     {
         this.pcScreen = new Screen(
-            this.resources.items.pcScreenModel.scene.children[0],
-            '/assets/videoPortfolio.mp4'
+            this.resources.items.pcScreenModel.scene.children[0]
         )
         this.macScreen = new Screen(
-            this.resources.items.macScreenModel.scene.children[0],
-            '/assets/videoStream.mp4'
+            this.resources.items.macScreenModel.scene.children[0]
         )
     }
 
