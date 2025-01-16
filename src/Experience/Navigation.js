@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
-import normalizeWheel from 'normalize-wheel'
 
 export default class Navigation
 {
@@ -80,98 +79,6 @@ export default class Navigation
         {
             this.view.zoom.delta += _delta
         }
-
-        /**
-         * Mouse events
-         */
-        this.view.onMouseDown = (_event) =>
-        {
-            _event.preventDefault()
-
-            this.view.drag.alternative = _event.button === 2 || _event.button === 1 || _event.ctrlKey || _event.shiftKey
-
-            this.view.down(_event.clientX, _event.clientY)
-
-            window.addEventListener('mouseup', this.view.onMouseUp)
-            window.addEventListener('mousemove', this.view.onMouseMove)
-        }
-
-        this.view.onMouseMove = (_event) =>
-        {
-            _event.preventDefault()
-            
-            this.view.move(_event.clientX, _event.clientY)
-        }
-
-        this.view.onMouseUp = (_event) =>
-        {
-            _event.preventDefault()
-            
-            this.view.up()
-
-            window.removeEventListener('mouseup', this.view.onMouseUp)
-            window.removeEventListener('mousemove', this.view.onMouseMove)
-        }
-
-        this.targetElement.addEventListener('mousedown', this.view.onMouseDown)
-        
-        /**
-         * Touch events
-         */
-        this.view.onTouchStart = (_event) =>
-        {
-            _event.preventDefault()
-
-            this.view.drag.alternative = _event.touches.length > 1
-
-            this.view.down(_event.touches[0].clientX, _event.touches[0].clientY)
-
-            window.addEventListener('touchend', this.view.onTouchEnd)
-            window.addEventListener('touchmove', this.view.onTouchMove)
-        }
-
-        this.view.onTouchMove = (_event) =>
-        {
-            _event.preventDefault()
-            
-            this.view.move(_event.touches[0].clientX, _event.touches[0].clientY)
-        }
-
-        this.view.onTouchEnd = (_event) =>
-        {
-            _event.preventDefault()
-            
-            this.view.up()
-
-            window.removeEventListener('touchend', this.view.onTouchEnd)
-            window.removeEventListener('touchmove', this.view.onTouchMove)
-        }
-
-        window.addEventListener('touchstart', this.view.onTouchStart)
-
-        /**
-         * Context menu
-         */
-        this.view.onContextMenu = (_event) =>
-        {
-            _event.preventDefault()
-        }
-        
-        window.addEventListener('contextmenu', this.view.onContextMenu)
-
-        /**
-         * Wheel
-         */
-        this.view.onWheel = (_event) =>
-        {
-            _event.preventDefault()
-
-            const normalized = normalizeWheel(_event)
-            this.view.zoomIn(normalized.pixelY)
-        }
-        
-        window.addEventListener('mousewheel', this.view.onWheel, { passive: false })
-        window.addEventListener('wheel', this.view.onWheel, { passive: false })
     }
 
     update()
@@ -208,8 +115,8 @@ export default class Navigation
         else
         {
             this.view.spherical.value.theta -= this.view.drag.delta.x * this.view.drag.sensitivity / this.config.smallestSide
-            this.view.spherical.value.phi -= this.view.drag.delta.y * this.view.drag.sensitivity / this.config.smallestSide    
-        
+            this.view.spherical.value.phi -= this.view.drag.delta.y * this.view.drag.sensitivity / this.config.smallestSide
+
             // Apply limits
             this.view.spherical.value.theta = Math.min(Math.max(this.view.spherical.value.theta, this.view.spherical.limits.theta.min), this.view.spherical.limits.theta.max)
             this.view.spherical.value.phi = Math.min(Math.max(this.view.spherical.value.phi, this.view.spherical.limits.phi.min), this.view.spherical.limits.phi.max)
