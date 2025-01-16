@@ -15,8 +15,8 @@ Run this followed commands:
 npm install
 
 # Run the local server at localhost:8080
-npm run dev
+NODE_OPTIONS=--openssl-legacy-provider npm run dev
 
 # Build for production in the dist/ directory
-npm run build
+NODE_OPTIONS=--openssl-legacy-provider npm run build
 ```
