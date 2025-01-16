@@ -25,5 +25,9 @@
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.8.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.7",
+    "vite-plugin-glslify": "^2.2.0"
   }
 }
