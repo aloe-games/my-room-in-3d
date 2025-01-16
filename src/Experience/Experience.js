@@ -3,7 +3,6 @@ import { Pane } from 'tweakpane'
 
 import Time from './Utils/Time.js'
 import Sizes from './Utils/Sizes.js'
-import Stats from './Utils/Stats.js'
 
 import Resources from './Resources.js'
 import Renderer from './Renderer.js'
@@ -37,7 +36,6 @@ export default class Experience
         this.time = new Time()
         this.sizes = new Sizes()
         this.setConfig()
-        this.setStats()
         this.setDebug()
         this.setScene()
         this.setCamera()
@@ -45,7 +43,7 @@ export default class Experience
         this.setResources()
         this.setWorld()
         this.setNavigation()
-        
+
         this.sizes.on('resize', () =>
         {
             this.resize()
@@ -61,17 +59,17 @@ export default class Experience
     //     {
     //         return Experience.instance
     //     }
-        
+
     //     console.log('create')
     //     Experience.instance = new Experience(_options)
-        
+
     //     return Experience.instance
     // }
 
     setConfig()
     {
         this.config = {}
-    
+
         // Pixel ratio
         this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
 
@@ -81,18 +79,10 @@ export default class Experience
         this.config.height = boundings.height || window.innerHeight
         this.config.smallestSide = Math.min(this.config.width, this.config.height)
         this.config.largestSide = Math.max(this.config.width, this.config.height)
-        
+
         // Debug
         // this.config.debug = window.location.hash === '#debug'
         this.config.debug = this.config.width > 420
-    }
-
-    setStats()
-    {
-        if(this.config.debug)
-        {
-            this.stats = new Stats(true)
-        }
     }
 
     setDebug()
@@ -103,7 +93,7 @@ export default class Experience
             this.debug.containerElem_.style.width = '320px'
         }
     }
-    
+
     setScene()
     {
         this.scene = new THREE.Scene()
@@ -140,9 +130,9 @@ export default class Experience
     {
         if(this.stats)
             this.stats.update()
-        
+
         this.camera.update()
-        
+
         if(this.renderer)
             this.renderer.update()
 
@@ -181,6 +171,6 @@ export default class Experience
 
     destroy()
     {
-        
+
     }
 }

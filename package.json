@@ -23,7 +23,6 @@
     "normalize-wheel": "^1.0.1",
     "portfinder-sync": "0.0.2",
     "raw-loader": "^4.0.2",
-    "stats.js": "^0.17.0",
     "three": "^0.130.1",
     "tweakpane": "^3.0.5",
     "webpack": "^5.42.1",
