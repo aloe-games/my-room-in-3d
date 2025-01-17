@@ -43,11 +43,6 @@ export default class Experience
         this.setWorld()
         this.setNavigation()
 
-        this.sizes.on('resize', () =>
-        {
-            this.resize()
-        })
-
         this.update()
     }
 
@@ -132,27 +127,6 @@ export default class Experience
         {
             this.update()
         })
-    }
-
-    resize()
-    {
-        // Config
-        const boundings = this.targetElement.getBoundingClientRect()
-        this.config.width = boundings.width
-        this.config.height = boundings.height
-        this.config.smallestSide = Math.min(this.config.width, this.config.height)
-        this.config.largestSide = Math.max(this.config.width, this.config.height)
-
-        this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
-
-        if(this.camera)
-            this.camera.resize()
-
-        if(this.renderer)
-            this.renderer.resize()
-
-        if(this.world)
-            this.world.resize()
     }
 
     destroy()
