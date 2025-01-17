@@ -4,7 +4,6 @@ import Resources from './Resources.js'
 import Renderer from './Renderer.js'
 import Camera from './Camera.js'
 import World from './World.js'
-import Navigation from './Navigation.js'
 
 import assets from './assets.js'
 import {OrbitControls} from "three/addons/controls/OrbitControls.js";
@@ -28,7 +27,6 @@ export default class Experience
         // this.controls = new OrbitControls(this.camera.instance, this.renderer.instance.domElement);
         this.setResources()
         this.setWorld()
-        this.setNavigation()
 
         this.update()
     }
@@ -69,22 +67,12 @@ export default class Experience
         this.world = new World()
     }
 
-    setNavigation()
-    {
-        this.navigation = new Navigation()
-    }
-
     update()
     {
-
-
-        this.camera.update()
-
         if(this.renderer)
             this.renderer.update()
 
-        if(this.navigation)
-            this.navigation.update()
+        // this.controls.update()
 
         window.requestAnimationFrame(() =>
         {

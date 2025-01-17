@@ -21,8 +21,8 @@ export default class Camera
     {
         // Set up
         this.instance = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 150)
-        this.instance.rotation.reorder('YXZ')
-
+        this.instance.position.set(-18.90110266005151, 15.619714992186406, 18.901102660051514)
+        this.instance.quaternion.set(-0.2156753936261212, -0.37210985866635193, -0.08933567311009516, 0.8983526674850427)
         this.scene.add(this.instance)
     }
 
@@ -33,14 +33,6 @@ export default class Camera
         // Default
         this.modes.default = {}
         this.modes.default.instance = this.instance.clone()
-        this.modes.default.instance.rotation.reorder('YXZ')
-    }
-
-    update()
-    {
-        // Apply coordinates
-        this.instance.position.copy(this.modes[this.mode].instance.position)
-        this.instance.quaternion.copy(this.modes[this.mode].instance.quaternion)
-        this.instance.updateMatrixWorld() // To be used in projection
+        // this.modes.default.instance.rotation.reorder('YXZ')
     }
 }
