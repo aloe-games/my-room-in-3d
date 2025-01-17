@@ -1,4 +1,3 @@
-import * as THREE from 'three'
 import Experience from './Experience.js'
 import Baked from './Baked.js'
 import GoogleLeds from './GoogleLeds.js'
@@ -65,10 +64,6 @@ export default class World
         )
     }
 
-    resize()
-    {
-    }
-
     update()
     {
         if(this.googleLeds)
@@ -79,9 +74,5 @@ export default class World
 
         if(this.topChair)
             this.topChair.update()
-    }
-
-    destroy()
-    {
     }
 }
