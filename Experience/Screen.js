@@ -20,7 +20,7 @@ export default class Screen
 
         // Material
         this.model.material = new THREE.MeshBasicMaterial({
-            color: 'black'
+            color: 0x222222
         })
 
         // Mesh

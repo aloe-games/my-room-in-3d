@@ -38,26 +38,11 @@ export default class Camera
         this.modes.default.instance.rotation.reorder('YXZ')
     }
 
-
-    resize()
-    {
-        this.instance.aspect = this.config.width / this.config.height
-        this.instance.updateProjectionMatrix()
-
-        this.modes.default.instance.aspect = this.config.width / this.config.height
-        this.modes.default.instance.updateProjectionMatrix()
-    }
-
     update()
     {
         // Apply coordinates
         this.instance.position.copy(this.modes[this.mode].instance.position)
         this.instance.quaternion.copy(this.modes[this.mode].instance.quaternion)
         this.instance.updateMatrixWorld() // To be used in projection
-    }
-
-    destroy()
-    {
-
     }
 }

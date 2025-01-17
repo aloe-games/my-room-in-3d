@@ -24,12 +24,6 @@ export default class Experience
         this.targetElement = document.createElement("div")
         document.body.appendChild(this.targetElement)
 
-        if(!this.targetElement)
-        {
-            console.warn('Missing \'targetElement\' property')
-            return
-        }
-
         this.setConfig()
         this.setScene()
         this.setCamera()
@@ -40,20 +34,6 @@ export default class Experience
 
         this.update()
     }
-
-    // static getInstance(_options = {})
-    // {
-    //     console.log(Experience.instance)
-    //     if(Experience.instance)
-    //     {
-    //         return Experience.instance
-    //     }
-
-    //     console.log('create')
-    //     Experience.instance = new Experience(_options)
-
-    //     return Experience.instance
-    // }
 
     setConfig()
     {
@@ -119,10 +99,5 @@ export default class Experience
         {
             this.update()
         })
-    }
-
-    destroy()
-    {
-
     }
 }
