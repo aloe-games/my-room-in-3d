@@ -4,8 +4,7 @@ import LoupedeckButtons from './LoupedeckButtons.js'
 import TopChair from './TopChair.js'
 import * as THREE from "three";
 
-export default (scene, resources) =>
-{
+export default (scene, resources) => {
     resources.on('groupEnd', (_group) => {
         if (_group.name === 'base') {
             const baked = new Baked(scene, resources)

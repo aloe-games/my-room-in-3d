@@ -21,4 +21,6 @@ controls.update()
 const resources = new Resources(renderer, assets)
 build_world(scene, resources)
 
-renderer.setAnimationLoop(() => {renderer.render(scene, camera)})
+renderer.setAnimationLoop(() => {
+    renderer.render(scene, camera)
+})

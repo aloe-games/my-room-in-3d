@@ -1,14 +1,12 @@
 import EventEmitter from './EventEmitter.js'
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
-import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
+import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
 
-export default class Resources extends EventEmitter
-{
+export default class Resources extends EventEmitter {
     /**
      * Constructor
      */
-    constructor(renderer)
-    {
+    constructor(renderer) {
         super()
 
         this.renderer = renderer
@@ -23,24 +21,19 @@ export default class Resources extends EventEmitter
     /**
      * Set loaders
      */
-    setLoaders()
-    {
+    setLoaders() {
         this.loaders = []
 
         // Images
         this.loaders.push({
-            extensions: ['jpg', 'png'],
-            action: (_resource) =>
-            {
+            extensions: ['jpg', 'png'], action: (_resource) => {
                 const image = new Image()
 
-                image.addEventListener('load', () =>
-                {
+                image.addEventListener('load', () => {
                     this.fileLoadEnd(_resource, image)
                 })
 
-                image.addEventListener('error', () =>
-                {
+                image.addEventListener('error', () => {
                     this.fileLoadEnd(_resource, image)
                 })
 
@@ -50,18 +43,15 @@ export default class Resources extends EventEmitter
 
         // Draco
         const dracoLoader = new DRACOLoader()
-        dracoLoader.setDecoderConfig({ type: 'js' })
+        dracoLoader.setDecoderConfig({type: 'js'})
 
         // GLTF
         const gltfLoader = new GLTFLoader()
         gltfLoader.setDRACOLoader(dracoLoader)
 
         this.loaders.push({
-            extensions: ['glb', 'gltf'],
-            action: (_resource) =>
-            {
-                gltfLoader.load(_resource.source, (_data) =>
-                {
+            extensions: ['glb', 'gltf'], action: (_resource) => {
+                gltfLoader.load(_resource.source, (_data) => {
                     this.fileLoadEnd(_resource, _data)
                 })
             }
@@ -71,29 +61,21 @@ export default class Resources extends EventEmitter
     /**
      * Load
      */
-    load(_resources = [])
-    {
-        for(const _resource of _resources)
-        {
+    load(_resources = []) {
+        for (const _resource of _resources) {
             this.toLoad++
             const extensionMatch = _resource.source.match(/\.([a-z]+)$/)
 
-            if(typeof extensionMatch[1] !== 'undefined')
-            {
+            if (typeof extensionMatch[1] !== 'undefined') {
                 const extension = extensionMatch[1]
                 const loader = this.loaders.find((_loader) => _loader.extensions.find((_extension) => _extension === extension))
 
-                if(loader)
-                {
+                if (loader) {
                     loader.action(_resource)
-                }
-                else
-                {
+                } else {
                     console.warn(`Cannot found loader for ${_resource}`)
                 }
-            }
-            else
-            {
+            } else {
                 console.warn(`Cannot found extension of ${_resource}`)
             }
         }
@@ -102,15 +84,13 @@ export default class Resources extends EventEmitter
     /**
      * File load end
      */
-    fileLoadEnd(_resource, _data)
-    {
+    fileLoadEnd(_resource, _data) {
         this.loaded++
         this.items[_resource.name] = _data
 
         this.trigger('fileEnd', [_resource, _data])
 
-        if(this.loaded === this.toLoad)
-        {
+        if (this.loaded === this.toLoad) {
             this.trigger('end')
         }
     }

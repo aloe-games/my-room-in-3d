@@ -3,18 +3,15 @@ import * as THREE from 'three'
 import vertexShader from './shaders/vertex.glsl.js'
 import fragmentShader from './shaders/fragment.glsl.js'
 
-export default class Baked
-{
-    constructor(scene, resources)
-    {
+export default class Baked {
+    constructor(scene, resources) {
         this.resources = resources
         this.scene = scene
 
         this.setModel()
     }
 
-    setModel()
-    {
+    setModel() {
         this.model = {}
 
         this.model.mesh = this.resources.items.roomModel.scene.children[0]
@@ -40,33 +37,28 @@ export default class Baked
         this.colors.pc = '#0082ff'
 
         this.model.material = new THREE.ShaderMaterial({
-            uniforms:
-            {
-                uBakedDayTexture: { value: this.model.bakedDayTexture },
-                uBakedNightTexture: { value: this.model.bakedNightTexture },
-                uBakedNeutralTexture: { value: this.model.bakedNeutralTexture },
-                uLightMapTexture: { value: this.model.lightMapTexture },
+            uniforms: {
+                uBakedDayTexture: {value: this.model.bakedDayTexture},
+                uBakedNightTexture: {value: this.model.bakedNightTexture},
+                uBakedNeutralTexture: {value: this.model.bakedNeutralTexture},
+                uLightMapTexture: {value: this.model.lightMapTexture},
 
-                uNightMix: { value: 1 },
-                uNeutralMix: { value: 0 },
+                uNightMix: {value: 1},
+                uNeutralMix: {value: 0},
 
-                uLightTvColor: { value: new THREE.Color(this.colors.tv) },
-                uLightTvStrength: { value: 1.47 },
+                uLightTvColor: {value: new THREE.Color(this.colors.tv)},
+                uLightTvStrength: {value: 1.47},
 
-                uLightDeskColor: { value: new THREE.Color(this.colors.desk) },
-                uLightDeskStrength: { value: 1.9 },
+                uLightDeskColor: {value: new THREE.Color(this.colors.desk)},
+                uLightDeskStrength: {value: 1.9},
 
-                uLightPcColor: { value: new THREE.Color(this.colors.pc) },
-                uLightPcStrength: { value: 1.4 }
-            },
-            vertexShader: vertexShader,
-            fragmentShader: fragmentShader
+                uLightPcColor: {value: new THREE.Color(this.colors.pc)},
+                uLightPcStrength: {value: 1.4}
+            }, vertexShader: vertexShader, fragmentShader: fragmentShader
         })
 
-        this.model.mesh.traverse((_child) =>
-        {
-            if(_child instanceof THREE.Mesh)
-            {
+        this.model.mesh.traverse((_child) => {
+            if (_child instanceof THREE.Mesh) {
                 _child.material = this.model.material
             }
         })

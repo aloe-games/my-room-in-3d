@@ -2,10 +2,8 @@ import * as THREE from 'three'
 import EventEmitter from './Utils/EventEmitter.js'
 import Loader from './Utils/Loader.js'
 
-export default class Resources extends EventEmitter
-{
-    constructor(renderer, _assets)
-    {
+export default class Resources extends EventEmitter {
+    constructor(renderer, _assets) {
         super()
 
         // Items (will contain every resources)
@@ -21,15 +19,12 @@ export default class Resources extends EventEmitter
         this.loadNextGroup()
 
         // Loader file end event
-        this.loader.on('fileEnd', (_resource, _data) =>
-        {
+        this.loader.on('fileEnd', (_resource, _data) => {
             let data = _data
 
             // Convert to texture
-            if(_resource.type === 'texture')
-            {
-                if(!(data instanceof THREE.Texture))
-                {
+            if (_resource.type === 'texture') {
+                if (!(data instanceof THREE.Texture)) {
                     data = new THREE.Texture(_data)
                 }
                 data.needsUpdate = true
@@ -43,26 +38,21 @@ export default class Resources extends EventEmitter
         })
 
         // Loader all end event
-        this.loader.on('end', () =>
-        {
+        this.loader.on('end', () => {
             this.groups.loaded.push(this.groups.current)
 
             // Trigger
             this.trigger('groupEnd', [this.groups.current])
 
-            if(this.groups.assets.length > 0)
-            {
+            if (this.groups.assets.length > 0) {
                 this.loadNextGroup()
-            }
-            else
-            {
+            } else {
                 this.trigger('end')
             }
         })
     }
 
-    loadNextGroup()
-    {
+    loadNextGroup() {
         this.groups.current = this.groups.assets.shift()
         this.groups.current.toLoad = this.groups.current.items.length
         this.groups.current.loaded = 0
@@ -70,41 +60,23 @@ export default class Resources extends EventEmitter
         this.loader.load(this.groups.current.items)
     }
 
-    createInstancedMeshes(_children, _groups)
-    {
+    createInstancedMeshes(_children, _groups) {
         // Groups
         const groups = []
 
-        for(const _group of _groups)
-        {
+        for (const _group of _groups) {
             groups.push({
-                name: _group.name,
-                regex: _group.regex,
-                meshesGroups: [],
-                instancedMeshes: []
+                name: _group.name, regex: _group.regex, meshesGroups: [], instancedMeshes: []
             })
         }
 
         // Result
         const result = {}
 
-        for(const _group of groups)
-        {
+        for (const _group of groups) {
             result[_group.name] = _group.instancedMeshes
         }
 
         return result
-    }
-
-    destroy()
-    {
-        for(const _itemKey in this.items)
-        {
-            const item = this.items[_itemKey]
-            if(item instanceof THREE.Texture)
-            {
-                item.dispose()
-            }
-        }
     }
 }

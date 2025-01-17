@@ -1,17 +1,14 @@
 import * as THREE from 'three'
 
-export default class GoogleLeds
-{
-    constructor(scene, resources)
-    {
+export default class GoogleLeds {
+    constructor(scene, resources) {
         this.resources = resources
         this.scene = scene
 
         this.setModel()
     }
 
-    setModel()
-    {
+    setModel() {
         this.model = {}
 
         this.model.items = []
@@ -23,20 +20,16 @@ export default class GoogleLeds
 
         // Children
         const children = [...this.resources.items.googleHomeLedsModel.scene.children]
-        children.sort((_a, _b) =>
-        {
-            if(_a.name < _b.name)
-                return -1
+        children.sort((_a, _b) => {
+            if (_a.name < _b.name) return -1
 
-            if(_a.name > _b.name)
-                return 1
+            if (_a.name > _b.name) return 1
 
             return 0
         })
 
         let i = 0
-        for(const _child of children)
-        {
+        for (const _child of children) {
             const item = {}
 
             item.index = i
@@ -44,9 +37,7 @@ export default class GoogleLeds
             item.color = colors[item.index]
 
             item.material = new THREE.MeshBasicMaterial({
-                color: item.color,
-                transparent: true,
-                alphaMap: this.model.texture
+                color: item.color, transparent: true, alphaMap: this.model.texture
             })
 
             item.mesh = _child

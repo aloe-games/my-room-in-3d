@@ -1,9 +1,7 @@
 import * as THREE from 'three'
 
-export default class LoupedeckButtons
-{
-    constructor(scene, resources)
-    {
+export default class LoupedeckButtons {
+    constructor(scene, resources) {
         this.resources = resources
         this.scene = scene
 
@@ -11,35 +9,29 @@ export default class LoupedeckButtons
         this.setAnimation()
     }
 
-    setModel()
-    {
+    setModel() {
         this.model = {}
 
         this.model.items = []
 
         // Children
         const children = [...this.resources.items.loupedeckButtonsModel.scene.children]
-        children.sort((_a, _b) =>
-        {
-            if(_a.name < _b.name)
-                return -1
+        children.sort((_a, _b) => {
+            if (_a.name < _b.name) return -1
 
-            if(_a.name > _b.name)
-                return 1
+            if (_a.name > _b.name) return 1
 
             return 0
         })
 
         let i = 0
-        for(const _child of children)
-        {
+        for (const _child of children) {
             const item = {}
 
             item.index = i
 
             item.material = new THREE.MeshBasicMaterial({
-                color: 0xffffff,
-                transparent: true
+                color: 0xffffff, transparent: true
             })
 
             item.mesh = _child
@@ -52,37 +44,29 @@ export default class LoupedeckButtons
         }
     }
 
-    setAnimation()
-    {
+    setAnimation() {
         this.animation = {}
 
         this.animation.colors = ['#af55cf', '#dbd85d', '#e86b24', '#b81b54']
 
-        this.animation.play = () =>
-        {
+        this.animation.play = () => {
             const buttons = []
             const outButtons = []
 
-            for(const _button of this.model.items)
-            {
-                if(Math.random() < 0.5)
-                {
+            for (const _button of this.model.items) {
+                if (Math.random() < 0.5) {
                     buttons.push(_button)
-                }
-                else
-                {
+                } else {
                     outButtons.push(_button)
                 }
             }
 
-            for(const _button of outButtons)
-            {
+            for (const _button of outButtons) {
                 _button.material.opacity = 0
             }
 
             let i = 0
-            for(const _button of buttons)
-            {
+            for (const _button of buttons) {
                 _button.material.color.set(this.animation.colors[Math.floor(Math.random() * this.animation.colors.length)])
 
                 i++
