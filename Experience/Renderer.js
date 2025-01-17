@@ -62,7 +62,7 @@ export default class Renderer
         /**
          * Render pass
          */
-        this.postProcess.renderPass = new RenderPass(this.scene, this.camera.instance)
+        this.postProcess.renderPass = new RenderPass(this.scene, this.camera)
 
         /**
          * Effect composer
@@ -95,7 +95,7 @@ export default class Renderer
         }
         else
         {
-            this.instance.render(this.scene, this.camera.instance)
+            this.instance.render(this.scene, this.camera)
         }
     }
 }
