@@ -33,7 +33,7 @@ export default class Experience
         this.controls.update()
 
         this.resources = new Resources(assets)
-        this.world = new World()
+        this.world = new World(this.scene, this.resources)
 
         this.renderer.setAnimationLoop(() => {this.renderer.render(this.scene, this.camera)})
     }

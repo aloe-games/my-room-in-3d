@@ -1,20 +1,14 @@
-import Experience from './Experience.js'
 import Baked from './Baked.js'
 import GoogleLeds from './GoogleLeds.js'
 import LoupedeckButtons from './LoupedeckButtons.js'
 import TopChair from './TopChair.js'
-import ElgatoLight from './ElgatoLight.js'
-import Screen from './Screen.js'
+import * as THREE from "three";
 
 export default class World
 {
-    constructor(_options)
+    constructor(scene, resources)
     {
-        this.experience = new Experience()
-        this.scene = this.experience.scene
-        this.resources = this.experience.resources
-
-        this.resources.on('groupEnd', (_group) =>
+        resources.on('groupEnd', (_group) =>
         {
             if(_group.name === 'base')
             {
@@ -22,8 +16,18 @@ export default class World
                 this.setGoogleLeds()
                 this.setLoupedeckButtons()
                 this.setTopChair()
-                this.setElgatoLight()
-                this.setScreens()
+
+                const elgatoLight = resources.items.elgatoLightModel.scene.children[0]
+                elgatoLight.material = new THREE.MeshBasicMaterial({color: 0xffffff})
+                scene.add(elgatoLight)
+
+                const pcScreen = resources.items.pcScreenModel.scene.children[0]
+                pcScreen.material = new THREE.MeshBasicMaterial({color: 0x222222})
+                scene.add(pcScreen)
+
+                const macScreen = resources.items.macScreenModel.scene.children[0]
+                macScreen.material = new THREE.MeshBasicMaterial({color: 0x222222})
+                scene.add(macScreen)
             }
         })
     }
@@ -46,20 +50,5 @@ export default class World
     setTopChair()
     {
         this.topChair = new TopChair()
-    }
-
-    setElgatoLight()
-    {
-        this.elgatoLight = new ElgatoLight()
-    }
-
-    setScreens()
-    {
-        this.pcScreen = new Screen(
-            this.resources.items.pcScreenModel.scene.children[0]
-        )
-        this.macScreen = new Screen(
-            this.resources.items.macScreenModel.scene.children[0]
-        )
     }
 }
