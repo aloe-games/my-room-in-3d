@@ -2,11 +2,11 @@ import * as THREE from 'three'
 
 export default class TopChair
 {
-    constructor(scene, resources, world)
+    constructor(scene, resources, baked)
     {
         this.resources = resources
         this.scene = scene
-        this.world = world
+        this.baked = baked
 
         this.setModel()
     }
@@ -22,7 +22,7 @@ export default class TopChair
         {
             if(_child instanceof THREE.Mesh)
             {
-                _child.material = this.world.baked.model.material
+                _child.material = this.baked.model.material
             }
         })
     }

@@ -2,7 +2,7 @@ import * as THREE from "three";
 import {OrbitControls} from "three/addons/controls/OrbitControls";
 import Resources from "./src/Resources";
 import assets from "./src/assets";
-import World from "./src/World";
+import build_world from "./src/build_world";
 
 const scene = new THREE.Scene()
 
@@ -19,6 +19,6 @@ camera.position.set(-20, 20, 20)
 controls.update()
 
 const resources = new Resources(renderer, assets)
-new World(scene, resources)
+build_world(scene, resources)
 
 renderer.setAnimationLoop(() => {renderer.render(scene, camera)})
