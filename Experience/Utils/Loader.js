@@ -2,7 +2,7 @@ import EventEmitter from './EventEmitter.js'
 import Experience from '../Experience.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
 
 export default class Resources extends EventEmitter
@@ -54,7 +54,6 @@ export default class Resources extends EventEmitter
 
         // Draco
         const dracoLoader = new DRACOLoader()
-        dracoLoader.setDecoderPath('draco/')
         dracoLoader.setDecoderConfig({ type: 'js' })
 
         this.loaders.push({
