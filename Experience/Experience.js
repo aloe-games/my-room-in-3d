@@ -23,12 +23,14 @@ export default class Experience
         this.setScene()
 
         this.camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 150)
-        this.camera.position.set(-18.90110266005151, 15.619714992186406, 18.901102660051514)
-        this.camera.quaternion.set(-0.2156753936261212, -0.37210985866635193, -0.08933567311009516, 0.8983526674850427)
         this.scene.add(this.camera)
 
         this.setRenderer()
-        // this.controls = new OrbitControls(this.camera, this.renderer.instance.domElement);
+
+        this.controls = new OrbitControls(this.camera, this.renderer.instance.domElement);
+        this.camera.position.set(-20, 20, 20)
+        this.controls.update()
+
         this.setResources()
         this.setWorld()
 
@@ -70,8 +72,6 @@ export default class Experience
     {
         if(this.renderer)
             this.renderer.update()
-
-        // this.controls.update()
 
         window.requestAnimationFrame(() =>
         {
