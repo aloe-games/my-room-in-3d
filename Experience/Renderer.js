@@ -35,7 +35,7 @@ export default class Renderer
 
         // this.instance.setClearColor(0x414141, 1)
         this.instance.setClearColor(this.clearColor, 1)
-        this.instance.setSize(this.config.width, this.config.height)
+        this.instance.setSize(window.innerWidth, window.innerHeight)
         this.instance.setPixelRatio(this.config.pixelRatio)
 
         // this.instance.physicallyCorrectLights = true
@@ -70,8 +70,8 @@ export default class Renderer
         const RenderTargetClass = this.config.pixelRatio >= 2 ? THREE.WebGLRenderTarget : THREE.WebGLMultisampleRenderTarget
         // const RenderTargetClass = THREE.WebGLRenderTarget
         this.renderTarget = new RenderTargetClass(
-            this.config.width,
-            this.config.height,
+            window.innerWidth,
+            window.innerHeight,
             {
                 generateMipmaps: false,
                 minFilter: THREE.LinearFilter,
@@ -81,30 +81,14 @@ export default class Renderer
             }
         )
         this.postProcess.composer = new EffectComposer(this.instance, this.renderTarget)
-        this.postProcess.composer.setSize(this.config.width, this.config.height)
+        this.postProcess.composer.setSize(window.innerWidth, window.innerHeight)
         this.postProcess.composer.setPixelRatio(this.config.pixelRatio)
 
         this.postProcess.composer.addPass(this.postProcess.renderPass)
     }
 
-    resize()
-    {
-        // Instance
-        this.instance.setSize(this.config.width, this.config.height)
-        this.instance.setPixelRatio(this.config.pixelRatio)
-
-        // Post process
-        this.postProcess.composer.setSize(this.config.width, this.config.height)
-        this.postProcess.composer.setPixelRatio(this.config.pixelRatio)
-    }
-
     update()
     {
-        if(this.stats)
-        {
-            this.stats.beforeRender()
-        }
-
         if(this.usePostprocess)
         {
             this.postProcess.composer.render()
@@ -113,19 +97,5 @@ export default class Renderer
         {
             this.instance.render(this.scene, this.camera.instance)
         }
-
-        if(this.stats)
-        {
-            this.stats.afterRender()
-        }
-    }
-
-    destroy()
-    {
-        this.instance.renderLists.dispose()
-        this.instance.dispose()
-        this.renderTarget.dispose()
-        this.postProcess.composer.renderTarget1.dispose()
-        this.postProcess.composer.renderTarget2.dispose()
     }
 }

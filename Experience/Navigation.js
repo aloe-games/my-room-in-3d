@@ -6,7 +6,6 @@ export default class Navigation
     constructor()
     {
         this.experience = new Experience()
-        this.targetElement = this.experience.targetElement
         this.camera = this.experience.camera
         this.config = this.experience.config
         this.time = {delta: 0}

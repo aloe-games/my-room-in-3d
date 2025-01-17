@@ -7,6 +7,7 @@ import World from './World.js'
 import Navigation from './Navigation.js'
 
 import assets from './assets.js'
+import {OrbitControls} from "three/addons/controls/OrbitControls.js";
 
 export default class Experience
 {
@@ -20,14 +21,11 @@ export default class Experience
         }
         Experience.instance = this
 
-        // Options
-        this.targetElement = document.createElement("div")
-        document.body.appendChild(this.targetElement)
-
         this.setConfig()
         this.setScene()
         this.setCamera()
         this.setRenderer()
+        // this.controls = new OrbitControls(this.camera.instance, this.renderer.instance.domElement);
         this.setResources()
         this.setWorld()
         this.setNavigation()
@@ -41,13 +39,8 @@ export default class Experience
 
         // Pixel ratio
         this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
-
-        // Width and height
-        const boundings = this.targetElement.getBoundingClientRect()
-        this.config.width = boundings.width
-        this.config.height = boundings.height || window.innerHeight
-        this.config.smallestSide = Math.min(this.config.width, this.config.height)
-        this.config.largestSide = Math.max(this.config.width, this.config.height)
+        this.config.smallestSide = Math.min(window.innerWidth, window.innerHeight)
+        this.config.largestSide = Math.max(window.innerWidth, window.innerHeight)
     }
 
     setScene()
@@ -63,8 +56,7 @@ export default class Experience
     setRenderer()
     {
         this.renderer = new Renderer({ rendererInstance: this.rendererInstance })
-
-        this.targetElement.appendChild(this.renderer.instance.domElement)
+        document.body.appendChild(this.renderer.instance.domElement)
     }
 
     setResources()
@@ -84,8 +76,7 @@ export default class Experience
 
     update()
     {
-        if(this.stats)
-            this.stats.update()
+
 
         this.camera.update()
 

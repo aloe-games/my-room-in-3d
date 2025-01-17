@@ -8,8 +8,6 @@ export default class Camera
     {
         // Options
         this.experience = new Experience()
-        this.config = this.experience.config
-        this.targetElement = this.experience.targetElement
         this.scene = this.experience.scene
 
         // Set up
@@ -22,7 +20,7 @@ export default class Camera
     setInstance()
     {
         // Set up
-        this.instance = new THREE.PerspectiveCamera(25, this.config.width / this.config.height, 0.1, 150)
+        this.instance = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 150)
         this.instance.rotation.reorder('YXZ')
 
         this.scene.add(this.instance)
