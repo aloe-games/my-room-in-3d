@@ -63,16 +63,4 @@ export default class World
             this.resources.items.macScreenModel.scene.children[0]
         )
     }
-
-    update()
-    {
-        if(this.googleLeds)
-            this.googleLeds.update()
-
-        if(this.loupedeckButtons)
-            this.loupedeckButtons.update()
-
-        if(this.topChair)
-            this.topChair.update()
-    }
 }

@@ -1,8 +1,5 @@
 import * as THREE from 'three'
 
-import Time from './Utils/Time.js'
-import Sizes from './Utils/Sizes.js'
-
 import Resources from './Resources.js'
 import Renderer from './Renderer.js'
 import Camera from './Camera.js'
@@ -33,8 +30,6 @@ export default class Experience
             return
         }
 
-        this.time = new Time()
-        this.sizes = new Sizes()
         this.setConfig()
         this.setScene()
         this.setCamera()
@@ -116,9 +111,6 @@ export default class Experience
 
         if(this.renderer)
             this.renderer.update()
-
-        if(this.world)
-            this.world.update()
 
         if(this.navigation)
             this.navigation.update()

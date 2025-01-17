@@ -9,7 +9,7 @@ export default class Navigation
         this.targetElement = this.experience.targetElement
         this.camera = this.experience.camera
         this.config = this.experience.config
-        this.time = this.experience.time
+        this.time = {delta: 0}
 
         this.setView()
     }

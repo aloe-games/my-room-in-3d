@@ -9,7 +9,6 @@ export default class GoogleLeds
         this.experience = new Experience()
         this.resources = this.experience.resources
         this.scene = this.experience.scene
-        this.time = this.experience.time
 
         this.setModel()
     }
@@ -60,14 +59,6 @@ export default class GoogleLeds
             this.model.items.push(item)
 
             i++
-        }
-    }
-
-    update()
-    {
-        for(const _item of this.model.items)
-        {
-            _item.material.opacity = Math.sin(this.time.elapsed * 0.002 - _item.index * 0.5) * 0.5 + 0.5
         }
     }
 }

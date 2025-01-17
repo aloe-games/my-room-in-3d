@@ -9,8 +9,6 @@ export default class Renderer
     {
         this.experience = new Experience()
         this.config = this.experience.config
-        this.time = this.experience.time
-        this.sizes = this.experience.sizes
         this.scene = this.experience.scene
         this.camera = this.experience.camera
 

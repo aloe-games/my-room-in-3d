@@ -9,7 +9,6 @@ export default class LoupedeckButtons
         this.experience = new Experience()
         this.resources = this.experience.resources
         this.scene = this.experience.scene
-        this.time = this.experience.time
 
         this.setModel()
         this.setAnimation()
@@ -95,13 +94,5 @@ export default class LoupedeckButtons
 
         this.animation.play()
         window.setInterval(this.animation.play, 5000)
-    }
-
-    update()
-    {
-        // for(const _item of this.model.items)
-        // {
-        //     _item.material.opacity = Math.sin(this.time.elapsed * 0.002 - _item.index * 0.5) * 0.5 + 0.5
-        // }
     }
 }

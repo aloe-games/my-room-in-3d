@@ -11,7 +11,6 @@ export default class Baked
         this.experience = new Experience()
         this.resources = this.experience.resources
         this.scene = this.experience.scene
-        this.time = this.experience.time
 
         this.setModel()
     }

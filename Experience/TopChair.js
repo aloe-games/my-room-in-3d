@@ -10,7 +10,6 @@ export default class TopChair
         this.resources = this.experience.resources
         this.scene = this.experience.scene
         this.world = this.experience.world
-        this.time = this.experience.time
 
         this.setModel()
     }
@@ -29,10 +28,5 @@ export default class TopChair
                 _child.material = this.world.baked.model.material
             }
         })
-    }
-
-    update()
-    {
-        this.model.group.rotation.y = Math.sin(this.time.elapsed * 0.0005) * 0.5
     }
 }

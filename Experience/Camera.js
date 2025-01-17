@@ -9,8 +9,6 @@ export default class Camera
         // Options
         this.experience = new Experience()
         this.config = this.experience.config
-        this.time = this.experience.time
-        this.sizes = this.experience.sizes
         this.targetElement = this.experience.targetElement
         this.scene = this.experience.scene
 
