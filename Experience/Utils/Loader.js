@@ -1,9 +1,7 @@
 import EventEmitter from './EventEmitter.js'
 import Experience from '../Experience.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
-import { FBXLoader } from 'three/addons/loaders/FBXLoader.js'
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { RGBELoader } from 'three/addons/loaders/RGBELoader.js'
 
 export default class Resources extends EventEmitter
 {
@@ -56,19 +54,6 @@ export default class Resources extends EventEmitter
         const dracoLoader = new DRACOLoader()
         dracoLoader.setDecoderConfig({ type: 'js' })
 
-        this.loaders.push({
-            extensions: ['drc'],
-            action: (_resource) =>
-            {
-                dracoLoader.load(_resource.source, (_data) =>
-                {
-                    this.fileLoadEnd(_resource, _data)
-
-                    DRACOLoader.releaseDecoderModule()
-                })
-            }
-        })
-
         // GLTF
         const gltfLoader = new GLTFLoader()
         gltfLoader.setDRACOLoader(dracoLoader)
@@ -78,34 +63,6 @@ export default class Resources extends EventEmitter
             action: (_resource) =>
             {
                 gltfLoader.load(_resource.source, (_data) =>
-                {
-                    this.fileLoadEnd(_resource, _data)
-                })
-            }
-        })
-
-        // FBX
-        const fbxLoader = new FBXLoader()
-
-        this.loaders.push({
-            extensions: ['fbx'],
-            action: (_resource) =>
-            {
-                fbxLoader.load(_resource.source, (_data) =>
-                {
-                    this.fileLoadEnd(_resource, _data)
-                })
-            }
-        })
-
-        // RGBE | HDR
-        const rgbeLoader = new RGBELoader()
-
-        this.loaders.push({
-            extensions: ['hdr'],
-            action: (_resource) =>
-            {
-                rgbeLoader.load(_resource.source, (_data) =>
                 {
                     this.fileLoadEnd(_resource, _data)
                 })
