@@ -15,7 +15,7 @@ export default class Experience
 {
     static instance
 
-    constructor(_options = {})
+    constructor()
     {
         if(Experience.instance)
         {
@@ -24,7 +24,8 @@ export default class Experience
         Experience.instance = this
 
         // Options
-        this.targetElement = _options.targetElement
+        this.targetElement = document.createElement("div")
+        document.body.appendChild(this.targetElement)
 
         if(!this.targetElement)
         {
