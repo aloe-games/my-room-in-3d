@@ -4,7 +4,7 @@ import Loader from './Utils/Loader.js'
 
 export default class Resources extends EventEmitter
 {
-    constructor(_assets)
+    constructor(renderer, _assets)
     {
         super()
 
@@ -12,7 +12,7 @@ export default class Resources extends EventEmitter
         this.items = {}
 
         // Loader
-        this.loader = new Loader({ renderer: this.renderer })
+        this.loader = new Loader(renderer)
 
         this.groups = {}
         this.groups.assets = [..._assets]
@@ -46,7 +46,7 @@ export default class Resources extends EventEmitter
         this.loader.on('end', () =>
         {
             this.groups.loaded.push(this.groups.current)
-            
+
             // Trigger
             this.trigger('groupEnd', [this.groups.current])
 

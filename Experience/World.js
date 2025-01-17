@@ -12,10 +12,10 @@ export default class World
         {
             if(_group.name === 'base')
             {
-                this.setBaked()
-                this.setGoogleLeds()
-                this.setLoupedeckButtons()
-                this.setTopChair()
+                this.setBaked(scene, resources)
+                new GoogleLeds(scene, resources)
+                new LoupedeckButtons(scene, resources)
+                new TopChair(scene, resources, this)
 
                 const elgatoLight = resources.items.elgatoLightModel.scene.children[0]
                 elgatoLight.material = new THREE.MeshBasicMaterial({color: 0xffffff})
@@ -32,23 +32,8 @@ export default class World
         })
     }
 
-    setBaked()
+    setBaked(scene, resources)
     {
-        this.baked = new Baked()
-    }
-
-    setGoogleLeds()
-    {
-        this.googleLeds = new GoogleLeds()
-    }
-
-    setLoupedeckButtons()
-    {
-        this.loupedeckButtons = new LoupedeckButtons()
-    }
-
-    setTopChair()
-    {
-        this.topChair = new TopChair()
+        this.baked = new Baked(scene, resources)
     }
 }

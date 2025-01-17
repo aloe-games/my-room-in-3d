@@ -1,14 +1,11 @@
-import Experience from './Experience.js'
-
 import * as THREE from 'three'
 
 export default class GoogleLeds
 {
-    constructor()
+    constructor(scene, resources)
     {
-        this.experience = new Experience()
-        this.resources = this.experience.resources
-        this.scene = this.experience.scene
+        this.resources = resources
+        this.scene = scene
 
         this.setModel()
     }

@@ -1,16 +1,14 @@
 import * as THREE from 'three'
 
-import Experience from './Experience.js'
 import vertexShader from './shaders/vertex.glsl.js'
 import fragmentShader from './shaders/fragment.glsl.js'
 
 export default class Baked
 {
-    constructor()
+    constructor(scene, resources)
     {
-        this.experience = new Experience()
-        this.resources = this.experience.resources
-        this.scene = this.experience.scene
+        this.resources = resources
+        this.scene = scene
 
         this.setModel()
     }

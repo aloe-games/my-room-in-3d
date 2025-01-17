@@ -1,5 +1,4 @@
 import EventEmitter from './EventEmitter.js'
-import Experience from '../Experience.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
@@ -8,12 +7,11 @@ export default class Resources extends EventEmitter
     /**
      * Constructor
      */
-    constructor()
+    constructor(renderer)
     {
         super()
 
-        this.experience = new Experience()
-        this.renderer = this.experience.renderer
+        this.renderer = renderer
 
         this.setLoaders()
 

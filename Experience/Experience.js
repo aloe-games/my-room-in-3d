@@ -32,7 +32,7 @@ export default class Experience
         this.camera.position.set(-20, 20, 20)
         this.controls.update()
 
-        this.resources = new Resources(assets)
+        this.resources = new Resources(this.renderer, assets)
         this.world = new World(this.scene, this.resources)
 
         this.renderer.setAnimationLoop(() => {this.renderer.render(this.scene, this.camera)})
