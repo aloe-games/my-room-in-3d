@@ -13,7 +13,7 @@ export default class Resources extends EventEmitter
         super()
 
         this.experience = new Experience()
-        this.renderer = this.experience.renderer.instance
+        this.renderer = this.experience.renderer
 
         this.setLoaders()
 

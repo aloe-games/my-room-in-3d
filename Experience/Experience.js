@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 
 import Resources from './Resources.js'
-import Renderer from './Renderer.js'
 import World from './World.js'
 
 import assets from './assets.js'
@@ -19,63 +18,23 @@ export default class Experience
         }
         Experience.instance = this
 
-        this.setConfig()
-        this.setScene()
+        this.scene = new THREE.Scene()
 
         this.camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 150)
         this.scene.add(this.camera)
 
-        this.setRenderer()
+        this.renderer = new THREE.WebGLRenderer({antialias: true})
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setPixelRatio(window.devicePixelRatio);
+        document.body.appendChild(this.renderer.domElement)
 
-        this.controls = new OrbitControls(this.camera, this.renderer.instance.domElement);
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         this.camera.position.set(-20, 20, 20)
         this.controls.update()
 
-        this.setResources()
-        this.setWorld()
-
-        this.update()
-    }
-
-    setConfig()
-    {
-        this.config = {}
-
-        // Pixel ratio
-        this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
-        this.config.smallestSide = Math.min(window.innerWidth, window.innerHeight)
-        this.config.largestSide = Math.max(window.innerWidth, window.innerHeight)
-    }
-
-    setScene()
-    {
-        this.scene = new THREE.Scene()
-    }
-
-    setRenderer()
-    {
-        this.renderer = new Renderer({ rendererInstance: this.rendererInstance })
-        document.body.appendChild(this.renderer.instance.domElement)
-    }
-
-    setResources()
-    {
         this.resources = new Resources(assets)
-    }
-
-    setWorld()
-    {
         this.world = new World()
-    }
 
-    update()
-    {
-        if(this.renderer)
-            this.renderer.update()
-
-        window.requestAnimationFrame(() =>
-        {
-            this.update()
-        })
+        this.renderer.setAnimationLoop(() => {this.renderer.render(this.scene, this.camera)})
     }
 }
