@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "glsl-blend": "^1.0.3",
     "three": "^0.130.1"
   },
   "devDependencies": {
