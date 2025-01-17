@@ -1,3 +1,4 @@
+export default `
 uniform sampler2D uBakedDayTexture;
 uniform sampler2D uBakedNightTexture;
 uniform sampler2D uBakedNeutralTexture;
@@ -48,3 +49,4 @@ void main()
 
     gl_FragColor = vec4(bakedColor, 1.0);
 }
+`

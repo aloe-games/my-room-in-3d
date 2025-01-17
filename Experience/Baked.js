@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 
 import Experience from './Experience.js'
-import vertexShader from './shaders/baked/vertex.glsl'
-import fragmentShader from './shaders/baked/fragment.glsl'
+import vertexShader from './shaders/vertex.glsl.js'
+import fragmentShader from './shaders/fragment.glsl.js'
 
 export default class Baked
 {

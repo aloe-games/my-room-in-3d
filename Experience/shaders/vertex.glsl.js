@@ -1,3 +1,4 @@
+export default `
 varying vec2 vUv;
 
 void main()
@@ -9,3 +10,4 @@ void main()
 
     vUv = uv;
 }
+`
