@@ -4,7 +4,7 @@ import Experience from './Experience.js'
 import vertexShader from './shaders/baked/vertex.glsl'
 import fragmentShader from './shaders/baked/fragment.glsl'
 
-export default class CoffeeSteam
+export default class Baked
 {
     constructor()
     {

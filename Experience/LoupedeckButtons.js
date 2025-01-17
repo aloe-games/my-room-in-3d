@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { gsap } from 'gsap'
 
 import Experience from './Experience.js'
 
@@ -89,25 +88,6 @@ export default class LoupedeckButtons
             for(const _button of buttons)
             {
                 _button.material.color.set(this.animation.colors[Math.floor(Math.random() * this.animation.colors.length)])
-                gsap.to(
-                    _button.material,
-                    {
-                        delay: i * 0.05,
-                        duration: 0.2,
-                        opacity: 1,
-                        onComplete: () =>
-                        {
-                            gsap.to(
-                                _button.material,
-                                {
-                                    delay: 3,
-                                    duration: 0.5,
-                                    opacity: 0
-                                }
-                            )
-                        }
-                    }
-                )
 
                 i++
             }
