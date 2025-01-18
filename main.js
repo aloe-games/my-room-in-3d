@@ -17,7 +17,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 camera.position.set(-20, 20, 20)
 controls.update()
 
-const resources = await load_resources(['bakedDay.jpg', 'bakedNeutral.jpg', 'bakedNight.jpg', 'elgatoLightModel.glb', 'googleHomeLedMask.png', 'googleHomeLedsModel.glb', 'lightMap.jpg', 'loupedeckButtonsModel.glb', 'macScreenModel.glb', 'pcScreenModel.glb', 'roomModel.glb', 'topChairModel.glb'])
+const resources = await load_resources(['bakedDay.jpg', 'bakedNeutral.jpg', 'bakedNight.jpg', 'elgatoLightModel.glb', 'lightMap.jpg', 'macScreenModel.glb', 'pcScreenModel.glb', 'roomModel.glb', 'topChairModel.glb'])
 
 build_world(scene, resources)
 
