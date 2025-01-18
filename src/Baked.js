@@ -4,8 +4,8 @@ import vertexShader from './shaders/vertex.glsl.js'
 import fragmentShader from './shaders/fragment.glsl.js'
 
 export default class Baked {
-    constructor(scene, resources) {
-        this.resources = resources
+    constructor(scene, resources2) {
+        this.resources2 = resources2
         this.scene = scene
 
         this.setModel()
@@ -14,21 +14,21 @@ export default class Baked {
     setModel() {
         this.model = {}
 
-        this.model.mesh = this.resources.items.roomModel.scene.children[0]
+        this.model.mesh = this.resources2["roomModel.glb"].scene.children[0]
 
-        this.model.bakedDayTexture = this.resources.items.bakedDayTexture
+        this.model.bakedDayTexture = this.resources2["bakedDay.jpg"]
         this.model.bakedDayTexture.encoding = THREE.sRGBEncoding
         this.model.bakedDayTexture.flipY = false
 
-        this.model.bakedNightTexture = this.resources.items.bakedNightTexture
+        this.model.bakedNightTexture = this.resources2["bakedNight.jpg"]
         this.model.bakedNightTexture.encoding = THREE.sRGBEncoding
         this.model.bakedNightTexture.flipY = false
 
-        this.model.bakedNeutralTexture = this.resources.items.bakedNeutralTexture
+        this.model.bakedNeutralTexture = this.resources2["bakedNeutral.jpg"]
         this.model.bakedNeutralTexture.encoding = THREE.sRGBEncoding
         this.model.bakedNeutralTexture.flipY = false
 
-        this.model.lightMapTexture = this.resources.items.lightMapTexture
+        this.model.lightMapTexture = this.resources2["lightMap.jpg"]
         this.model.lightMapTexture.flipY = false
 
         this.colors = {}

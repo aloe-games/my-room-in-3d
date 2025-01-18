@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 
 export default class LoupedeckButtons {
-    constructor(scene, resources) {
-        this.resources = resources
+    constructor(scene, resources2) {
+        this.resources2 = resources2
         this.scene = scene
 
         this.setModel()
@@ -15,7 +15,7 @@ export default class LoupedeckButtons {
         this.model.items = []
 
         // Children
-        const children = [...this.resources.items.loupedeckButtonsModel.scene.children]
+        const children = [...this.resources2["loupedeckButtonsModel.glb"].scene.children]
         children.sort((_a, _b) => {
             if (_a.name < _b.name) return -1
 

@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 
 export default class TopChair {
-    constructor(scene, resources, baked) {
-        this.resources = resources
+    constructor(scene, resources2, baked) {
+        this.resources2 = resources2
         this.scene = scene
         this.baked = baked
 
@@ -12,7 +12,7 @@ export default class TopChair {
     setModel() {
         this.model = {}
 
-        this.model.group = this.resources.items.topChairModel.scene.children[0]
+        this.model.group = this.resources2["topChairModel.glb"].scene.children[0]
         this.scene.add(this.model.group)
 
         this.model.group.traverse((_child) => {

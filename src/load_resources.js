@@ -1,8 +1,9 @@
 import * as THREE from "three";
 import {DRACOLoader} from "three/addons/loaders/DRACOLoader";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
+import {texture} from "three/tsl";
 
-const image_loader = new THREE.ImageLoader();
+const texture_loader = new THREE.TextureLoader();
 const draco_loader = new DRACOLoader()
 draco_loader.setDecoderConfig({type: 'js'})
 const gltf_loader = new GLTFLoader()
@@ -10,7 +11,7 @@ gltf_loader.setDRACOLoader(draco_loader)
 
 let load = (name) => {
     return new Promise((resolve, reject) => {
-        let loader = image_loader
+        let loader = texture_loader
         if (name.endsWith(".glb")) {
             loader = gltf_loader
         }
@@ -22,11 +23,11 @@ let load = (name) => {
         })
     });
 };
-export default (assets) => {
+export default async (assets) => {
     let loaded = {}
     for (let i = 0; i < assets.length; i++) {
         let name = assets[i]
-        load(name).then(value => loaded[name] = value).catch(error => console.log(error))
+        await load(name).then(value => loaded[name] = value).catch(error => console.log(error))
     }
     return loaded
 }
