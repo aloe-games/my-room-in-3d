@@ -24,9 +24,9 @@ export default (scene, resources) => {
     baked.lightMapTexture.flipY = false
 
     const colors = {}
-    colors.tv = '#ff115e'
-    colors.desk = '#ff6700'
-    colors.pc = '#0082ff'
+    colors.tv = 'HotPink'
+    colors.desk = 'GoldenRod'
+    colors.pc = 'CornflowerBlue'
 
     baked.material = new THREE.ShaderMaterial({
         uniforms: {
