@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 
 export default class GoogleLeds {
-    constructor(scene, resources2) {
-        this.resources2 = resources2
+    constructor(scene, resources) {
+        this.resources = resources
         this.scene = scene
 
         this.setModel()
@@ -16,10 +16,10 @@ export default class GoogleLeds {
         const colors = ['#196aff', '#ff0000', '#ff5d00', '#7db81b']
 
         // Texture
-        this.model.texture = this.resources2["googleHomeLedMask.png"]
+        this.model.texture = this.resources["googleHomeLedMask.png"]
 
         // Children
-        const children = [...this.resources2["googleHomeLedsModel.glb"].scene.children]
+        const children = [...this.resources["googleHomeLedsModel.glb"].scene.children]
         children.sort((_a, _b) => {
             if (_a.name < _b.name) return -1
 
