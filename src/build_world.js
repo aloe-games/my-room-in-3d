@@ -4,39 +4,25 @@ import vertexShader from './shaders/vertex.glsl.js'
 import fragmentShader from './shaders/fragment.glsl.js'
 
 export default (scene, resources) => {
-    const baked = {}
+    const room = {}
 
-    baked.mesh = resources["roomModel.glb"].scene.children[0]
+    room.mesh = resources["roomModel.glb"].scene.children[0]
 
-    baked.bakedDayTexture = resources["bakedDay.jpg"]
-    baked.bakedDayTexture.encoding = THREE.sRGBEncoding
-    baked.bakedDayTexture.flipY = false
+    room.bakedNightTexture = resources["bakedNight.jpg"]
+    room.bakedNightTexture.flipY = false
 
-    baked.bakedNightTexture = resources["bakedNight.jpg"]
-    baked.bakedNightTexture.encoding = THREE.sRGBEncoding
-    baked.bakedNightTexture.flipY = false
-
-    baked.bakedNeutralTexture = resources["bakedNeutral.jpg"]
-    baked.bakedNeutralTexture.encoding = THREE.sRGBEncoding
-    baked.bakedNeutralTexture.flipY = false
-
-    baked.lightMapTexture = resources["lightMap.jpg"]
-    baked.lightMapTexture.flipY = false
+    room.lightMapTexture = resources["lightMap.jpg"]
+    room.lightMapTexture.flipY = false
 
     const colors = {}
     colors.tv = 'HotPink'
     colors.desk = 'GoldenRod'
     colors.pc = 'CornflowerBlue'
 
-    baked.material = new THREE.ShaderMaterial({
+    room.material = new THREE.ShaderMaterial({
         uniforms: {
-            uBakedDayTexture: {value: baked.bakedDayTexture},
-            uBakedNightTexture: {value: baked.bakedNightTexture},
-            uBakedNeutralTexture: {value: baked.bakedNeutralTexture},
-            uLightMapTexture: {value: baked.lightMapTexture},
-
-            uNightMix: {value: 1},
-            uNeutralMix: {value: 0},
+            uBakedNightTexture: {value: room.bakedNightTexture},
+            uLightMapTexture: {value: room.lightMapTexture},
 
             uLightTvColor: {value: new THREE.Color(colors.tv)},
             uLightTvStrength: {value: 1.47},
@@ -49,20 +35,20 @@ export default (scene, resources) => {
         }, vertexShader: vertexShader, fragmentShader: fragmentShader
     })
 
-    baked.mesh.traverse((_child) => {
+    room.mesh.traverse((_child) => {
         if (_child instanceof THREE.Mesh) {
-            _child.material = baked.material
+            _child.material = room.material
         }
     })
 
-    scene.add(baked.mesh)
+    scene.add(room.mesh)
 
     const topChair = {}
     topChair.group = resources["topChairModel.glb"].scene.children[0]
     scene.add(topChair.group)
     topChair.group.traverse((_child) => {
         if (_child instanceof THREE.Mesh) {
-            _child.material = baked.material
+            _child.material = room.material
         }
     })
 

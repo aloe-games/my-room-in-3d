@@ -17,7 +17,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 camera.position.set(-20, 20, 20)
 controls.update()
 
-load_resources(['bakedDay.jpg', 'bakedNeutral.jpg', 'bakedNight.jpg', 'elgatoLightModel.glb', 'lightMap.jpg', 'macScreenModel.glb', 'pcScreenModel.glb', 'roomModel.glb', 'topChairModel.glb'], (resources) => {
+load_resources(['bakedNight.jpg', 'elgatoLightModel.glb', 'lightMap.jpg', 'macScreenModel.glb', 'pcScreenModel.glb', 'roomModel.glb', 'topChairModel.glb'], (resources) => {
     build_world(scene, resources)
 
     renderer.setAnimationLoop(() => {
